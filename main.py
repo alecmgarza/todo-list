@@ -11,6 +11,9 @@ while list_open:
     def output_list():
         for i in range(len(todo_list)):
             print(f'{i + 1}. ' + todo_list[i])
+    
+    def mark_complete(i):
+        todo_list[i] = '\u0336' + '\u0336'.join(todo_list[i])
 
     user_action = prompt_user()
 
@@ -26,7 +29,9 @@ while list_open:
             print('No task at this position.')
             output_list()
     elif user_action == 'C': 
-        complete_index = int(input('Enter the number of the task you would like to mark completed: ')) - 1
+        complete_pos = int(input('Enter the position of the task you would like to mark completed: '))
+        mark_complete(complete_pos - 1)
+        output_list()
     elif user_action == 'Q':
         break
     else:
