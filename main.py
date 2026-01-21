@@ -22,17 +22,26 @@ def main():
             todo_list.append(input('Enter your task: '))
             output_list(todo_list)
         elif user_action == 'D':
-            delete_pos = int(input('Enter the position of the task you would like to delete: '))
             try: 
+                delete_pos = int(input('Enter the position of the task you would like to delete: '))
                 todo_list.pop(delete_pos - 1)
                 output_list(todo_list)
             except IndexError:
                 print('No task at this position.')
-                output_list()
+                output_list(todo_list)
+            except ValueError:
+                print('Please enter a number for the task position.')
         elif user_action == 'C': 
-            complete_pos = int(input('Enter the position of the task you would like to mark completed: '))
-            mark_complete(todo_list, complete_pos - 1)
-            output_list(todo_list)
+            try:
+                complete_pos = int(input('Enter the position of the task you would like to mark completed: '))
+                mark_complete(todo_list, complete_pos - 1)
+                output_list(todo_list)
+            except IndexError:
+                print('No task at this position.')
+                output_list(todo_list)
+            except ValueError:
+                print('Please enter a number for the task position.')
+                output_list(todo_list)
         elif user_action == 'Q':
             break
         else:
